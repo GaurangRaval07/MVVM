@@ -14,9 +14,14 @@ class CommentVC: UIViewController {
     
     // MARK: - VARIABLES
     var viewModel = PostViewModel()
-
+    let defaults = UserDefaults.standard
+    
     // MARK: - MAIN METHODS
     override func viewDidLoad() {
+        let email = UserDefaultsManager.shared.getUserEmail() ?? "No Email"
+        let password = UserDefaultsManager.shared.getUserPassword() ?? "No Password"
+        print("📩 Logged-in Email: \(email)")
+        print("🔑 Logged-in Password: \(password)")
         ConfigureUI()
         getAPI()
     }

@@ -44,6 +44,10 @@ class LoginVC: UIViewController {
             showAlert(message: "Please Enter Email and Password")
             return
         }
+        if password.count < 6 {
+            showAlert(message: "Password Should be more than 6 characters!")
+            return
+        }
         // Save user login details
         loginViewModel.saveUserData(email: email, password: password)
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
