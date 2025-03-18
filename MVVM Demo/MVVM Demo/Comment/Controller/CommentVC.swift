@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CommentVC: UIViewController {
     
     // MARK: - IBOUTLETS
     @IBOutlet weak var tblComments: UITableView!
@@ -27,9 +27,8 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(_):
-                    print("Success")
                     self.tblComments.reloadData()
-                case .failure(let error):
+                case .failure(_):
                     print("Error")
                 }
             }
@@ -40,12 +39,13 @@ class ViewController: UIViewController {
     func ConfigureUI() {
         self.tblComments.register(UINib(nibName: "CommentsTVCell", bundle: nil), forCellReuseIdentifier: "CommentsTVCell")
     }
+    
     // MARK: - IBACTIONS
     
 }
 
 // MARK: - TABLEVIEW DELEGATE AND DATASOURCE METHODS
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension CommentVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.comments.count
     }
@@ -66,7 +66,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.lblBody.text = "Body:- \(cmnts.body ?? "")"
         return cell
     }
-    
     
 }
 // MARK: - COLLECTIONVIEW DELEGATE AND DATASOURCE METHODS
